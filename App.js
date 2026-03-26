@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, SafeAreaView, StatusBar, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, SafeAreaView, TouchableOpacity, Platform } from 'react-native';
 
 export default function App() {
 
@@ -20,9 +20,9 @@ export default function App() {
       <ScrollView showsVerticalScrollIndicator={false}>
         
         {/*popular book*/}
+        <Text style = {[styles.h1, styles.sectionTitle]}>Popular Books</Text>
         <View style = {styles.bookgroup}>
-          <Text style = {styles.h1}>Popular Books</Text>
-          <ScrollView horizontal showsHorizontalScrollIndicator = {false}>
+          <ScrollView horizontal showsHorizontalScrollIndicator = {false} contentContainerStyle = {styles.scrollGroup}>
 
             {/*Book 1*/}
             <View style = {styles.bookcard}>
@@ -49,9 +49,10 @@ export default function App() {
         </View>
 
         {/*newest book*/}
+        <Text style = {[styles.h1, styles.sectionTitle]}>Newest</Text>
         <View style = {styles.bookgroup}>
-          <Text style = {styles.h1}>Newest</Text>
-          <ScrollView horizontal showsHorizontalScrollIndicator = {false}>
+
+          <ScrollView horizontal showsHorizontalScrollIndicator = {false} contentContainerStyle = {styles.scrollGroup}>
 
             {/*Book 1*/}
             <View style = {styles.bookcard}>
@@ -125,8 +126,8 @@ const GlobalStyles = {
 
   fonts: {
     family: "Roboto",
-    weighth: 500,
-    weightp: 400,
+    weightH: 500,
+    weightP: 400,
     sizeh1: 24,
     sizeh2: 16,
     sizep1: 14,
@@ -138,32 +139,30 @@ const styles = StyleSheet.create({
   h1:{
     fontSize: GlobalStyles.fonts.sizeh1,
     fontFamily: GlobalStyles.fonts.family,
-    fontWeight: GlobalStyles.fonts.weighth
+    fontWeight: GlobalStyles.fonts.weightH
   },
 
   h2:{
     fontSize: GlobalStyles.fonts.sizeh2,
     fontFamily: GlobalStyles.fonts.family,
-    fontweight: GlobalStyles.fonts.weighth
+    fontWeight: GlobalStyles.fonts.weightH
   },
 
   p1:{
     fontSize: GlobalStyles.fonts.sizep1,
     fontFamily: GlobalStyles.fonts.family,
-    fontWeight: GlobalStyles.fonts.weightp
+    fontWeight: GlobalStyles.fonts.weightP
   },
 
   p2:{
     fontSize: GlobalStyles.fonts.sizep2,
     fontFamily: GlobalStyles.fonts.family,
-    fontweight: GlobalStyles.fonts.sizep2
+    fontWeight: GlobalStyles.fonts.weightP
   },
 
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 
   header: {
@@ -173,6 +172,7 @@ const styles = StyleSheet.create({
     paddingVertical: GlobalStyles.spacing.vertical,
     paddingHorizontal: GlobalStyles.spacing.horizontal,
     marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+    height: 56
   },
 
   icon: {
@@ -180,6 +180,20 @@ const styles = StyleSheet.create({
     height: 24,
     paddingVertical: 8,
     paddingHorizontal: 8,
-    resizeMode: 'contain',
+    resizeMode: 'contain'
+  },
+
+  sectionTitle: {
+    paddingVertical: GlobalStyles.spacing.vertical,
+    paddingHorizontal: GlobalStyles.spacing.horizontal,
+    marginLeft: 20,
+    marginTop: 8
+  },
+
+  scrollGroup: {
+    paddingHorizontal: 20
   }
+
+
+
 });
