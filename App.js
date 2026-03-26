@@ -123,7 +123,7 @@ function DetailsScreen({navigation}){
   const [activeTab, setActiveTab] = useState("home")
   const [bookMarked, setBookMarked] = useState(false)
   return(
-    <SafeAreaView style = {styles.infoContainer}>
+    <SafeAreaView style = {[styles.infoContainer, {flex: 1}]}>
       <StatusBar barStyle = 'dark-content'/>
       
       {/*header*/}
@@ -140,22 +140,22 @@ function DetailsScreen({navigation}){
       <View>
         
         <View style = {styles.bigPic}>
-          <Image source = {require("./assets/img_book_ysl.png")} style = {{ width: 210, height: 300 }}/>
+          <Image source = {require("./assets/img_book_ysl.png")} style = {{ width: 210, height: 300}}/>
         </View>
 
         <View style = {styles.bookInfo}>
-          <Text style = {[styles.h1, ]}>Yves Saint Laurent</Text>
-          <Text style = {[styles.p1, {color: GlobalStyles.colors.gray}]}>Suzy Menkes </Text>
+          <Text style = {[styles.h1, {textAlign: "center"}]}>Yves Saint Laurent</Text>
+          <Text style = {[styles.p1, {textAlign: "center", color: GlobalStyles.colors.gray, marginTop: 8}]}>Suzy Menkes </Text>
           <View style = {styles.infoRating}>
-            <View style = {styles.rating}>
-                {[1,2,3,4,5].map(x => (<Image key = {x} source = {x <= 4 ? require("./assets/icon_star_filled.png") : require("./assets/icon_star_empty.png")}/>))}
-            </View>
-            <Text style = {styles.p2}>4.0 / 5.0</Text>
+             <View style = {styles.InfoRatingStar}>
+                {[1,2,3,4,5].map(x => (<Image style = {styles.infoStar} key = {x} source = {x <= 4 ? require("./assets/icon_star_filled.png") : require("./assets/icon_star_empty.png")}/>))}
+              </View>
+            <Text style = {[styles.p2, {marginLeft: 8}]}>4.0 / 5.0</Text>
           </View>
         </View>
 
         <View style = {styles.infoDesc}>
-          <Text style = {styles.p1}>A spectacular visual journey through 40 years of haute couture from one of the best-known and most trend-setting brands in fashion.</Text>
+          <Text style = {[styles.p1, {textAlign: "center", MarginTop: 16}]}>A spectacular visual journey through 40 years of haute couture from one of the best-known and most trend-setting brands in fashion.</Text>
         </View>
 
       </View>
@@ -309,5 +309,86 @@ const styles = StyleSheet.create({
 
   navTextActive:{
     color: GlobalStyles.colors.purple
-  }
+  },
+  infoContainer: {
+    backgroundColor: '#fff'
+  },
+
+  bigPic: {
+    marginTop: 24,
+    marginBottom: 24,
+    alignItems: 'center'
+  },
+
+  infoBookCover: {
+    width: 210, 
+    height: 300, 
+    borderRadius: 8,
+  },
+
+  bookInfo: {
+    alignItems: 'center', 
+  },
+
+  infoTitle: {
+    fontSize: 24,
+    fontWeight: '700',
+    textAlign: 'center', 
+  },
+
+  infoAuthor: {
+    fontSize: 16,
+    color: '#666',
+    marginTop: 4,
+    textAlign: 'center',
+  },
+
+  infoStar: {
+    width: 14,
+    height: 14,
+    marginHorizontal: 1,
+  },
+
+  infoRating: {
+    flexDirection: 'row',
+    alignItems: 'center', 
+    justifyContent: 'center', 
+    marginTop: 12,
+  },
+
+  InfoRatingStar: {
+    flexDirection: "row",
+    alignItems: 'center', 
+  },
+
+
+  ratingTotal: {
+    color: '#BBB',
+  },
+
+  infoDesc: {
+    paddingHorizontal: 40,
+    marginTop: 20,
+    textAlign: 'center',
+    lineHeight: 22,
+    color: '#333',
+  },
+
+  buyButton: {
+    backgroundColor: GlobalStyles.colors.purple,
+    width: 190, 
+    paddingVertical: 14,
+    borderRadius: 8,
+    marginTop: 30,
+    alignSelf: 'center', 
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  buyButtonText: {
+    color: '#FFF',
+    fontWeight: 'bold',
+    fontSize: 14,
+    textAlign: 'center',
+  },
 });
