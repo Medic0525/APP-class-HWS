@@ -1,7 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, ScrollView, SafeAreaView, StatusBar } from 'react-native';
+import { useState } from 'react';
+import { StyleSheet, Text, View, Image, ScrollView, SafeAreaView, StatusBar, TouchableOpacity } from 'react-native';
 
 export default function App() {
+
+  const [activeTab, setActiveTab] = useState("home")
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle = 'dark-content'/>
@@ -52,6 +56,9 @@ export default function App() {
             {/*Book 1*/}
             <View style = {styles.bookcard}>
               <Image source = {require("./assets/img_book_ysl.png")} style = {styles.bookpage}/>
+              <View style = {styles.rating}>
+                {[1,2,3,4,5].map(x => (<Image key = {x} source = {x <= 4 ? require("./assets/icon_star_filled.png") : require("./assets/icon_star_empty.png")}/>))}
+              </View>
               <Text style = {styles.h2}>Yves Saint Laurent</Text>
               <Text style = {styles.p1}>Dana Thomas</Text>
             </View>
@@ -59,6 +66,9 @@ export default function App() {
             {/*Book 2*/}
             <View style = {styles.bookcard}>
               <Image source = {require("./assets/img_book_tbos.png")} style = {styles.bookpage}/>
+              <View style = {styles.rating}>
+                {[1,2,3,4,5].map(x => (<Image key = {x} source = {x <= 3 ? require("./assets/icon_star_filled.png") : require("./assets/icon_star_empty.png")}/>))}
+              </View>
               <Text style = {styles.h2}>The Book of Signs</Text>
               <Text style = {styles.p1}>Patrick Mauriès</Text>
             </View>
@@ -66,6 +76,9 @@ export default function App() {
             {/*Book 3*/}
             <View style = {styles.bookcard}>
               <Image source = {require("./assets/img_book_stitchedup.png")} style = {styles.bookpage}/>
+              <View style = {styles.rating}>
+                {[1,2,3,4,5].map(x => (<Image key = {x} source = {x <= 3 ? require("./assets/icon_star_filled.png") : require("./assets/icon_star_empty.png")}/>))}
+              </View>
               <Text style = {styles.h2}>Stitched Up</Text>
               <Text style = {styles.p1}>June & Lucy</Text>
             </View>
@@ -74,6 +87,25 @@ export default function App() {
         </View>
 
       </ScrollView>
+
+      {/*nav bar*/}
+      <View style = {styles.nav}>
+
+        {/*home*/}
+        <TouchableOpacity onPress={() => setActiveTab("home")}>
+          <Image source = {activeTab === "home" ? require("./assets/icon_home.png") : require("./assets/icon_home_actived.png")}/>
+        </TouchableOpacity>
+      
+        {/*wishlist*/}
+        <TouchableOpacity onPress={() => setActiveTab("wishlist")}>
+          <Image source = {activeTab === "home" ? require("./assets/icon_nav_bookmark.png") : require("./assets/icon_nav_bookmark_actived.png")}/>
+        </TouchableOpacity>
+
+        {/*mybook*/}
+        <TouchableOpacity onPress={() => setActiveTab("mybook")}>
+          <Image source = {activeTab === "home" ? require("./assets/icon_mybook.png") : require("./assets/icon_mybook_actived.png")}/>
+        </TouchableOpacity>
+      </View>
 
     </SafeAreaView>
   );
